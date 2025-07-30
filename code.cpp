@@ -1,6 +1,7 @@
 // This is code for the snake game using c++ language 
 #include <iostream>
 #include <conio.h>
+#include <windows.h>
 using namespace std;
 
 bool GameOver;
@@ -29,21 +30,14 @@ void draw(){
     system("cls");
     for(int i=0;i<height;i++){
         for(int j=0;j<width;j++){
-            if(i==0 || i==height-1){
+            if(i==0 || i==height-1 || j==0 || j==width-1){
                 cout << "#";
+            }else if(i==y && j==x){
+                cout << "o";
+            }else if(i==fruitY && j==fruitX){
+                cout << "F";
             }else{
-                if(j==0 || j==width-1){
-                    cout << "#";
-                }else{
-                    if(i==y && j==x){
-                        cout << "o";
-                    }
-                    if(i==fruitY && j==fruitX){
-                        cout << "F";
-                    }else{
-                        cout << " ";
-                    }
-                }
+                cout << " ";
             }
         }
         cout << endl;
@@ -78,12 +72,35 @@ void input(){
 }
 
 void logic(){
+    switch(dir){
+        case LEFT:
+        x--;
+        break;
 
+        case RIGHT:
+        x++;
+        break;
+        
+        case UP:
+        y--;
+        break;
+        
+        case DOWN:
+        y++;
+        break;
+    }
+    if(x <= 0 || x >= width || y <= 0 || y >= height)
+        GameOver = true;
 }
 
 
 int main(){
     setup();
-    draw();
+    while(!GameOver){
+        draw();
+        input();
+        logic();
+        Sleep(300);
+    }
     return 0;
 }
