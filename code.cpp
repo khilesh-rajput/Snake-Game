@@ -23,9 +23,8 @@ void setup(){
     dir = STOP;
     x = width/2;
     y = height/2;
-    fruitX = rand() % width;
-    fruitY = rand() % height;
-    score = 0;
+    fruitX = rand() % (width - 2) + 1;
+    fruitY = rand() % (height - 2) + 1;
 }
 
 void draw(){
@@ -97,7 +96,7 @@ void logic(){
     if(x == fruitX && y == fruitY){
         score+=10;
         fruitX = rand() % (width - 2) + 1;
-        fruitY = rand() % (height - 2) + 1;
+    fruitY = rand() % (height - 2) + 1;
     }    
 }
 
@@ -109,7 +108,7 @@ int main(){
         draw();
         input();
         logic();
-        Sleep(100);
+        Sleep(500);
     }
     return 0;
 }
