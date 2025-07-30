@@ -25,7 +25,28 @@ void setup(){
 }
 
 void draw(){
-
+    system("cls");
+    for(int i=0;i<height;i++){
+        for(int j=0;j<width;j++){
+            if(i==0 || i==height-1){
+                cout << "#";
+            }else{
+                if(j==0 || j==width-1){
+                    cout << "#";
+                }else{
+                    if(i==y && j==x){
+                        cout << "o";
+                    }
+                    if(i==fruitY && j==fruitX){
+                        cout << "F";
+                    }else{
+                        cout << " ";
+                    }
+                }
+            }
+        }
+        cout << endl;
+    }
 }
 
 void input(){
@@ -39,5 +60,6 @@ void logic(){
 
 int main(){
     setup();
+    draw();
     return 0;
 }
