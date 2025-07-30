@@ -1,5 +1,6 @@
 // This is code for the snake game using c++ language 
 #include <iostream>
+#include <conio.h>
 using namespace std;
 
 bool GameOver;
@@ -49,8 +50,31 @@ void draw(){
     }
 }
 
-void input(){
+/*
+_kbhit() and _getch() from <conio.h>:
+kbhit() is an old function from Turbo C++ (not supported in modern GCC ❌)
+_kbhit() is the Microsoft-specific version (with underscore)
+Works in Windows using MinGW or MSVC
+_kbhit() → Checks if a key is pressed (non-blocking)
+_getch() → Reads the key without needing to press Enter
+Useful for real-time input in games like Snake
+*/
 
+void input(){
+    if(_kbhit()){
+        switch (_getch()){
+        case 'a': dir = LEFT;
+            break;
+        case 'd': dir = RIGHT;
+            break;
+        case 'w': dir = UP;
+            break;                
+        case 's': dir = DOWN;
+            break;
+        case 'x' : GameOver=true;
+            break;
+        }
+    }
 }
 
 void logic(){
